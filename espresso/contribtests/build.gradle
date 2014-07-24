@@ -1,0 +1,27 @@
+apply plugin: 'android'
+
+group = 'com.google.android.apps.common.testing'
+version = '1.1'
+
+description = 'Tests for the Espresso Contrib Library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile project(':espresso:contrib')
+    compile project(':testrunner-runtime')
+    compile project(':testapp')
+}

@@ -1,0 +1,29 @@
+apply plugin: 'android'
+
+group = 'com.google.android.apps.common.testing'
+version = '1.1'
+
+
+description = 'Tests For the Espresso Test Framework'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile project(':espresso:lib')
+    compile project(':testapp')
+    compile 'com.google.dexmaker:dexmaker-mockito:1.0'
+    compile 'com.google.dexmaker:dexmaker:1.0'
+}

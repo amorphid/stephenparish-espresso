@@ -1,0 +1,10 @@
+// test kit
+include ':espresso:lib',
+        ':espresso:contrib',
+        ':testrunner',
+        ':testrunner-runtime'
+
+// test kit tests
+include ':testapp',
+        ':espresso:libtests',
+        ':espresso:contribtests'

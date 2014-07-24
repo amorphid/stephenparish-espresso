@@ -23,7 +23,6 @@ public class ActionBarTestActivity extends ActionBarActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.actionbar_activity);
     inflater = getMenuInflater();
-    mode = startSupportActionMode(new TestActionMode());
 
     ((Button) findViewById(R.id.show_contextual_action_bar)).setOnClickListener(
         new View.OnClickListener() {

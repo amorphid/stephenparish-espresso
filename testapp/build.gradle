@@ -1,0 +1,52 @@
+apply plugin: 'android'
+
+group = 'com.google.android.apps.common.testing'
+version = '1.1'
+
+description = 'Test App For UI Testing'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        testApplicationId 'com.google.android.apps.common.testing.ui.testapp.tests'
+        testInstrumentationRunner 'com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner'
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            res.srcDirs = ['res']
+        }
+
+        androidTest.setRoot('../testapp_test')
+        androidTest {
+            manifest.srcFile '../testapp_test/AndroidManifest.xml'
+            java.srcDirs = ['../testapp_test/src']
+            resources.srcDirs = ['../testapp_test/src']
+            res.srcDirs = ['../testapp_test/res']
+        }
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile 'com.google.guava:guava:16.0'
+    compile 'com.android.support:support-v4:19.0.1'
+    compile 'com.android.support:appcompat-v7:19.0.1'
+
+    androidTestCompile(project(':espresso:contrib')) {
+        exclude group: 'com.google.guava', module: 'guava'
+        exclude group: 'com.android.support', module:'support-v4'
+    }
+}

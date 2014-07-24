@@ -1,0 +1,23 @@
+apply plugin: 'android-library'
+
+group = 'com.google.android.apps.common.testing'
+version = '1.1'
+
+description = 'Google Instrumentation TestRunner-Runtime'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile project(':testrunner')
+}

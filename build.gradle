@@ -1,0 +1,34 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.12.+'
+        classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.+'
+    }
+}
+
+ext {
+    compileSdkVersion = 19
+    buildToolsVersion = '20.0.0'
+
+    preDexLibs = !project.hasProperty('disablePreDex')
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    project.plugins.whenPluginAdded { plugin ->
+        if ("com.android.build.gradle.AppPlugin".equals(plugin.class.name)) {
+            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+        } else if ("com.android.build.gradle.LibraryPlugin".equals(plugin.class.name)) {
+            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+        }
+    }
+}
